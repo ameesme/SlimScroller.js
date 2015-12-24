@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>slimScroller Demo</title>
+		<title>slimScroller.js Demo</title>
 		<!-- These styles are not required for the actual plugin. Just for the demo. -->
 		<style>
 			body{
@@ -62,5 +62,8 @@
 		<button onclick='slimScroller.scroll(document.querySelector("button:first-of-type"))'>Scroll to first button JS-element</button>
 
 		<script src='src/slimScroller.js'></script>
+		<script>
+			window.onload = slimScroller.bind;
+		</script>
 	</body>
 </html>
