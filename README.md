@@ -1,5 +1,5 @@
 # slimScroller.js
-A slim smooth-scrolling script under 0.6 Kb (gzipped), with no other dependencies (No jQuery).
+A slim smooth-scrolling script under 300 bytes (gzipped), with no other dependencies (No jQuery).
 
 ##Two versions
 ###[SlimScroller Base](https://github.com/ameesme/SlimScroller.js/blob/master/dist/slimScroller.min.js)
