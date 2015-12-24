@@ -1,5 +1,5 @@
 {
-  "name": "SlimScroller.js",
+  "name": "slimscroller",
   "version": "0.0.1",
   "description": "Slim smooth-scrolling under 300 bytes (gzipped), with no other dependencies.",
   "main": "dist/slimScroller.min.js",
