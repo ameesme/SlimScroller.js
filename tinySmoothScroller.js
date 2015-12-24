@@ -5,9 +5,9 @@ var tinySmoothScroller = function(pixels, horizontal, time, callback){
 		return start + (end - start) * easeInOutCubic(elapsed / duration);
 	}
 	var duration = time || 300;
-	var context = window;
 	var start = (horizontal) ? window.pageXOffset : window.pageYOffset;
-	var end = parseInt(pixels);
+	var total = (horizontal) ? document.body.offsetWidth - window.innerWidth : document.body.offsetHeight - window.innerHeight;
+	var end = (parseInt(pixels) > total) ? total : parseInt(pixels);
 
 	var clock = Date.now();
 	var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame;
