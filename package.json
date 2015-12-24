@@ -1,0 +1,11 @@
+{
+  "name": "SlimScroller.js",
+  "version": "0.0.1",
+  "description": "Slim smooth-scrolling under 300 bytes (gzipped), with no other dependencies.",
+  "main": "dist/slimScroller.min.js",
+  "author": "Mees Boeijen <mees@amees.me> (https://amees.me)",
+  "license": "MIT",
+  "homepage": "https://github.com/ameesme/SlimScroller.js",
+  "repository": "https://github.com/ameesme/SlimScroller.js",
+  "keywords": ['tiny', 'smooth scroll', 'no dependencies']
+}
