@@ -1,23 +1,30 @@
 # slimScroller.js
-A smooth-scrolling script under 0.5 Kb (gzipped), with no dependencies.
+A slim smooth-scrolling script under 0.6 Kb (gzipped), with no other dependencies (No jQuery).
 
-##How to use
-Just use the `slimScroller`-function with three parameters.
-- `Required` Target position in `px`, a selector (`p:first-of-type`), or an HTML-element (`document.querySelector(p#hi)`)
+##Two versions
+###SlimScroller Base
+    540  bytes gzipped
+    1010 bytes uncompressed
+The base includes support for four types of scroll-targets:
+- Position in pixels ( eg. `slimScroller.scroll(200)` )
+- CSS selector ( eg. `slimScroller.scroll("p:first-of-type")` )
+- Direct JavaScript HTML-element ( eg. `slimScroller.scroll(document.querySelector(p#hi))` )
+
+By executing `slimScroller.bind()` when the dom finishes loading, SlimScroller will also animate same-page hash-scroll in anchor tags. 
+
+###SlimScroller Small
+    282 bytes gzipped
+    464 bytes uncompressed
+
+The small version includes support for one type of scroll-target:
+- CSS selector ( eg. `slimScroller.scroll("p:first-of-type")` )
+
+##How to scroll
+Just use the `slimScroller.scroll`-function with the following parameters.
+- `Required` Scroll-target according to SlimScroller-version
 - `Optional` Duration in `ms`
 - `Optional` Switch to horizontal-scrolling in `boolean`
-- `Optional` Callback-function
-
-##How small is this
-The tidy, uncompressed code is less than one kilobyte. The minified code is less than half a kilobyte.
-
-##Example
-```
-slimScroller.scroll(200);
-```
-
-##Is it pretty?
-I am not sure. It works great though.
+- `Optional` Callback-function with resulting scroll-position as parameter
 
 ##Thanks
 This is a smaller fork of [alicelieutier's smoothScroll](https://github.com/alicelieutier/smoothScroll).
