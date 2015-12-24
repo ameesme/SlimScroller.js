@@ -1,0 +1,14 @@
+{
+	"resources": {
+		"body": [
+			{
+				"type": "script",
+				"src": "dist/slimScroller.min.js"
+			},
+			{
+				"type": "script",
+				"src": "dist/init.js"
+			}
+		]
+	}
+}
