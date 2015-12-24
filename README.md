@@ -2,7 +2,7 @@
 A slim smooth-scrolling script under 0.6 Kb (gzipped), with no other dependencies (No jQuery).
 
 ##Two versions
-###SlimScroller Base
+###[SlimScroller Base](https://github.com/ameesme/SlimScroller.js/blob/master/dist/slimScroller.min.js)
     540  bytes gzipped
     1010 bytes uncompressed
 The base includes support for four types of scroll-targets:
@@ -12,7 +12,7 @@ The base includes support for four types of scroll-targets:
 
 By executing `slimScroller.bind()` when the dom finishes loading, SlimScroller will also animate same-page hash-scroll in anchor tags. 
 
-###SlimScroller Small
+###[SlimScroller Small](https://github.com/ameesme/SlimScroller.js/blob/master/dist/slimScroller.small.min.js)
     282 bytes gzipped
     464 bytes uncompressed
 
