@@ -1,25 +1,49 @@
-var tinySmoothScroller = function(pixels, horizontal, time, callback){
-	var easeInOutCubic = function (t) { return t<.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1 }
+var tinySmoothScroller = function(target, horizontal, time, callback){
+	var easeInOutCubic = function (time) {
+		return time < .5 ? 4 * time * time * time : (time - 1) * (2 * time - 2) * (2 * time - 2) + 1; 
+	}
 	var position = function(start, end, elapsed, duration) {
 		if (elapsed > duration) return end;
 		return start + (end - start) * easeInOutCubic(elapsed / duration);
 	}
+
 	var duration = time || 300;
 	var start = (horizontal) ? window.pageXOffset : window.pageYOffset;
 	var total = (horizontal) ? document.body.offsetWidth - window.innerWidth : document.body.offsetHeight - window.innerHeight;
-	var end = (parseInt(pixels) > total) ? total : parseInt(pixels);
+
+	var parseNumber = parseInt(target);
+	var parseElement = target.offsetLeft;
+	var parseSelector;
+	try{
+		parseSelector = document.querySelector(target);
+	}catch(e){};
+
+	var targetPosition;
+	if (parseNumber) {
+		// Target is pixel value
+		targetPosition = (parseInt(target) > total) ? total : parseInt(target);
+	}else if(parseSelector){
+		// Target is CSS-selector
+		targetPosition = (horizontal) ? document.querySelector(target).offsetLeft : document.querySelector(target).offsetTop
+	}else if(parseElement !== undefined){
+		// Target is HTML-element
+		targetPosition = (horizontal) ? parseElement : target.offsetTop;
+	}else{
+		// Unknown type
+		console.error('Unknown type as target');
+	};
 
 	var clock = Date.now();
 	var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame;
 
 	var step = function(){
 		var elapsed = Date.now() - clock;
-		var finalPosition = position(start, end, elapsed, duration);
+		var finalPosition = position(start, targetPosition, elapsed, duration);
 		(horizontal) ? window.scroll(finalPosition, 0) : window.scroll(0, finalPosition);
 		
 		if (elapsed > duration) {
 			if (callback) {
-				callback(pixels);
+				callback(window.scrollY);
 			};
 		} else {
 			requestAnimationFrame(step);

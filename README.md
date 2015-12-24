@@ -3,10 +3,10 @@ A smooth-scrolling function under 0.4 Kb (minified), with no dependencies.
 
 ##How to use
 Just use the `tinySmoothScroller`-function with three parameters.
-- Target position in `px`
-- Optional duration in `ms`
-- Optional switch to horizontal-scrolling in `boolean`
-- Optional callback-function
+- `Required` Target position in `px`, a selector (`p:first-of-type`), or an HTML-element (`document.querySelector(p#specialParagraph)`)
+- `Optional` Duration in `ms`
+- `Optional` Switch to horizontal-scrolling in `boolean`
+- `Optional` Callback-function
 
 ##How small is this
 The tidy, uncompressed code is less than one kilobyte. The minified code is less than half a kilobyte.
