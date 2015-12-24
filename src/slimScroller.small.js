@@ -13,27 +13,7 @@ var slimScroller = {
         var start = (horizontal) ? window.pageXOffset : window.pageYOffset;
         var total = (horizontal) ? document.body.offsetWidth - window.innerWidth : document.body.offsetHeight - window.innerHeight;
 
-        var parseNumber = parseInt(target);
-        var parseElement = target.offsetLeft;
-        var parseSelector;
-        try{
-            parseSelector = document.querySelector(target);
-        }catch(e){}
-
-        var targetPosition;
-        if (parseNumber) {
-            // Target is pixel value
-            targetPosition = (parseInt(target) > total) ? total : parseInt(target);
-        }else if(parseSelector){
-            // Target is CSS-selector
-            targetPosition = (horizontal) ? document.querySelector(target).offsetLeft : document.querySelector(target).offsetTop;
-        }else if(parseElement !== undefined){
-            // Target is HTML-element
-            targetPosition = (horizontal) ? parseElement : target.offsetTop;
-        }else{
-            // Unknown type
-            console.error('Unknown type as target');
-        }
+        var targetPosition = (horizontal) ? document.querySelector(target).offsetLeft : document.querySelector(target).offsetTop;
 
         var clock = Date.now();
         var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame;
