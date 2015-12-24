@@ -66,4 +66,3 @@ var slimScroller = {
         }
     }
 };
-window.onload = slimScroller.bind;
