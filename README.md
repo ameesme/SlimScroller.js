@@ -13,9 +13,7 @@ The tidy, uncompressed code is less than one kilobyte. The minified code is less
 
 ##Example
 ```
-tinySmoothScroller(200,'x',function(resultPosition){
-  console.log('The scroll position is now '+resultPosition);
-});
+tinySmoothScroller.scroll(200);
 ```
 
 ##Is it pretty?
