@@ -10,7 +10,8 @@ The base includes support for four types of scroll-targets:
 - CSS selector ( eg. `slimScroller.scroll("p:first-of-type")` )
 - Direct JavaScript HTML-element ( eg. `slimScroller.scroll(document.querySelector(p#hi))` )
 
-By executing `slimScroller.bind()` when the dom finishes loading, SlimScroller will also animate same-page hash-scroll in anchor tags. 
+###Hashtags
+By executing `slimScroller.bind()` when the dom finishes loading, SlimScroller will also animate same-page hashtag-scrolling in anchor tags. 
 
 ###[SlimScroller Small](https://github.com/ameesme/SlimScroller.js/blob/master/dist/slimScroller.small.min.js)
     282 bytes gzipped
