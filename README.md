@@ -27,5 +27,8 @@ Just use the `slimScroller.scroll`-function with the following parameters.
 - `Optional` Switch to horizontal-scrolling in `boolean`
 - `Optional` Callback-function with resulting scroll-position as parameter
 
+##NPM
+Yes. Use `npm install slimscroller`.
+
 ##Thanks
 This is a smaller fork of [alicelieutier's smoothScroll](https://github.com/alicelieutier/smoothScroll).
