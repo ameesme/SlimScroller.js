@@ -1,4 +1,4 @@
-var tinySmoothScroller = {
+var slimScroller = {
     scroll: function (target, horizontal, time, callback) {
         'use strict';
 
@@ -59,11 +59,11 @@ var tinySmoothScroller = {
             if (allAnchors[i].href == window.location.href + '#' + allAnchors[i].href.split('#')[1]) {
                 allAnchors[i].addEventListener('click', function (event) {
                     event.preventDefault();
-                    tinySmoothScroller.scroll('#'+event.target.href.split('#')[1]);
+                    slimScroller.scroll('#'+event.target.href.split('#')[1]);
                     window.location.href = event.target.href;
                 });
             }
         }
     }
 };
-window.onload = tinySmoothScroller.bind;
+window.onload = slimScroller.bind;
