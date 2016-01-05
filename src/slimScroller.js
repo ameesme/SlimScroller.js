@@ -4,9 +4,10 @@ var slimScroller = function (){
     var targetPosition,horizontal,clock,elapsed,duration,startPosition,total,callback;
     var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame;
 
-    var scroll = function (target, horizontal, durationTime, callback) {
+    var scroll = function (target, horizontal, durationTime, callbackFunction) {
         duration = durationTime || 500;
         horizontal = horizontal || false;
+        callback = callbackFunction || false;
         startPosition = (horizontal) ? window.pageXOffset : window.pageYOffset;
         total = (horizontal) ? document.body.offsetWidth - window.innerWidth : document.body.offsetHeight - window.innerHeight;
         targetPosition = (parsePosition(target) > total) ? total : parsePosition(target);
@@ -66,7 +67,7 @@ var slimScroller = function (){
             if (allAnchors[i].href == window.location.href + '#' + allAnchors[i].href.split('#')[1]) {
                 allAnchors[i].addEventListener('click', function (event) {
                     event.preventDefault();
-                    slimScroller.scroll('#'+event.target.href.split('#')[1], null, time, callback);
+                    slimScroller.scroll('#'+event.target.href.split('#')[1], null, time, callbackFunction);
                     window.location.href = event.target.href;
                 });
             }
