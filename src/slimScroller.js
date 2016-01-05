@@ -53,7 +53,7 @@ var slimScroller = function (){
         }
         if (elapsed > duration) {
             if (callback) {
-                callback(window.scrollY);
+                callback([window.scrollX,window.scrollY]);
             }
         } else {
             requestAnimationFrame(step);
