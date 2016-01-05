@@ -53,13 +53,13 @@ var slimScroller = {
         };
         step();
     },
-    bind: function () {
+    bind: function (time, callback) {
         var allAnchors = document.querySelectorAll('a');
         for (var i = 0; i < allAnchors.length; i++) {
             if (allAnchors[i].href == window.location.href + '#' + allAnchors[i].href.split('#')[1]) {
                 allAnchors[i].addEventListener('click', function (event) {
                     event.preventDefault();
-                    slimScroller.scroll('#'+event.target.href.split('#')[1]);
+                    slimScroller.scroll('#'+event.target.href.split('#')[1], null, time, callback);
                     window.location.href = event.target.href;
                 });
             }
