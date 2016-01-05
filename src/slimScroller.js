@@ -1,18 +1,26 @@
-var slimScroller = {
-    scroll: function (target, horizontal, time, callback) {
-        'use strict';
+var slimScroller = function (){
+    'use strict';
 
-        var easeInOutCubic = function (time) {
-            return (time < 0.5) ? 4 * time * time * time : (time - 1) * (2 * time - 2) * (2 * time - 2) + 1;
-        };
-        var position = function (start, end, elapsed, duration) {
-            return (elapsed > duration) ? end : start + (end - start) * easeInOutCubic(elapsed / duration);
-        };
+    var targetPosition,horizontal,clock,elapsed,duration,startPosition,total,callback;
+    var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame;
 
-        var duration = time || 300;
-        var start = (horizontal) ? window.pageXOffset : window.pageYOffset;
-        var total = (horizontal) ? document.body.offsetWidth - window.innerWidth : document.body.offsetHeight - window.innerHeight;
+    var scroll = function (target, horizontal, durationTime, callback) {
+        duration = durationTime || 500;
+        horizontal = horizontal || false;
+        startPosition = (horizontal) ? window.pageXOffset : window.pageYOffset;
+        total = (horizontal) ? document.body.offsetWidth - window.innerWidth : document.body.offsetHeight - window.innerHeight;
+        targetPosition = (parsePosition(target) > total) ? total : parsePosition(target);
 
+        clock = Date.now();
+        step();
+    };
+    var easeInOutCubic = function (time) {
+        return (time < 0.5) ? 4 * time * time * time : (time - 1) * (2 * time - 2) * (2 * time - 2) + 1;
+    };
+    var calculatePosition = function () {
+        return (elapsed > duration) ? targetPosition : startPosition + (targetPosition - startPosition) * easeInOutCubic(elapsed / duration);
+    };
+    var parsePosition = function (target){
         var parseNumber = parseInt(target);
         var parseElement = target.offsetLeft;
         var parseSelector;
@@ -20,42 +28,41 @@ var slimScroller = {
             parseSelector = document.querySelector(target);
         }catch(e){}
 
-        var targetPosition;
         if (parseNumber) {
             // Target is pixel value
-            targetPosition = (parseInt(target) > total) ? total : parseInt(target);
+            return parseNumber;
         }else if(parseSelector){
             // Target is CSS-selector
-            targetPosition = (horizontal) ? document.querySelector(target).offsetLeft : document.querySelector(target).offsetTop;
+            return (horizontal) ? document.querySelector(target).offsetLeft : document.querySelector(target).offsetTop;
         }else if(parseElement !== undefined){
             // Target is HTML-element
-            targetPosition = (horizontal) ? parseElement : target.offsetTop;
+            return (horizontal) ? parseElement : target.offsetTop;
         }else{
             // Unknown type
-            console.error('Unknown type as target');
+            throw new Error('Unknown type as target');
         }
+    };
+    var step = function () {
+        elapsed = Date.now() - clock;
+        var stepPosition = calculatePosition();
 
-        var clock = Date.now();
-        var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame;
-
-        var step = function () {
-            var elapsed = Date.now() - clock;
-            var finalPosition = position(start, targetPosition, elapsed, duration);
-            if(horizontal){window.scroll(finalPosition, 0);}else{window.scroll(0, finalPosition);}
-            
-            if (elapsed > duration) {
-                if (callback) {
-                    callback(window.scrollY);
-                }
-            } else {
-                requestAnimationFrame(step);
+        if (horizontal){
+            window.scroll(stepPosition, 0);
+        }else{
+            window.scroll(0, stepPosition);
+        }
+        if (elapsed > duration) {
+            if (callback) {
+                callback(window.scrollY);
             }
-        };
-        step();
-    },
-    bind: function (time, callback) {
+        } else {
+            requestAnimationFrame(step);
+        }
+    };
+    var bind = function (time, callbackFunction) {
         var allAnchors = document.querySelectorAll('a');
-        for (var i = 0; i < allAnchors.length; i++) {
+        var i;
+        for (i = 0; i < allAnchors.length; i++) {
             if (allAnchors[i].href == window.location.href + '#' + allAnchors[i].href.split('#')[1]) {
                 allAnchors[i].addEventListener('click', function (event) {
                     event.preventDefault();
@@ -64,5 +71,9 @@ var slimScroller = {
                 });
             }
         }
-    }
-};
+    };
+    return {
+        scroll: scroll,
+        bind: bind
+    };
+}();
