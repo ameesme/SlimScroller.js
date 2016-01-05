@@ -10,7 +10,7 @@ var slimScroller = function (){
         callback = callbackFunction || false;
         startPosition = (horizontal) ? window.pageXOffset : window.pageYOffset;
         total = (horizontal) ? document.body.offsetWidth - window.innerWidth : document.body.offsetHeight - window.innerHeight;
-        targetPosition = (parsePosition(target) > total) ? total : parsePosition(target);
+        targetPosition = (target > total) ? total : target;
 
         clock = Date.now();
         step();
@@ -20,28 +20,6 @@ var slimScroller = function (){
     };
     var calculatePosition = function () {
         return (elapsed > duration) ? targetPosition : startPosition + (targetPosition - startPosition) * easeInOutCubic(elapsed / duration);
-    };
-    var parsePosition = function (target){
-        var parseNumber = parseInt(target);
-        var parseElement = target.offsetLeft;
-        var parseSelector;
-        try{
-            parseSelector = document.querySelector(target);
-        }catch(e){}
-
-        if (parseNumber) {
-            // Target is pixel value
-            return parseNumber;
-        }else if(parseSelector){
-            // Target is CSS-selector
-            return (horizontal) ? document.querySelector(target).offsetLeft : document.querySelector(target).offsetTop;
-        }else if(parseElement !== undefined){
-            // Target is HTML-element
-            return (horizontal) ? parseElement : target.offsetTop;
-        }else{
-            // Unknown type
-            throw new Error('Unknown type as target');
-        }
     };
     var step = function () {
         elapsed = Date.now() - clock;
@@ -60,21 +38,7 @@ var slimScroller = function (){
             requestAnimationFrame(step);
         }
     };
-    var bind = function (time, callbackFunction) {
-        var allAnchors = document.querySelectorAll('a');
-        var i;
-        for (i = 0; i < allAnchors.length; i++) {
-            if (allAnchors[i].href == window.location.href + '#' + allAnchors[i].href.split('#')[1]) {
-                allAnchors[i].addEventListener('click', function (event) {
-                    event.preventDefault();
-                    slimScroller.scroll('#'+event.target.href.split('#')[1], null, time, callbackFunction);
-                    window.location.href = event.target.href;
-                });
-            }
-        }
-    };
     return {
-        scroll: scroll,
-        bind: bind
+        scroll: scroll
     };
 }();
