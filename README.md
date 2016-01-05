@@ -1,5 +1,5 @@
 # slimScroller.js
-A slim smooth-scrolling script under 300 bytes (gzipped), with no other dependencies (No jQuery).
+A slim smooth-scrolling script under 350 bytes (gzipped), with no other dependencies (No jQuery).
 
 ## Two versions
 ### [SlimScroller Base](https://github.com/ameesme/SlimScroller.js/blob/master/dist/slimScroller.min.js)
@@ -14,8 +14,8 @@ The base includes support for four types of scroll-targets:
 By executing `slimScroller.bind()` when the dom finishes loading, SlimScroller will also animate same-page hashtag-scrolling in anchor tags. 
 
 ### [SlimScroller Small](https://github.com/ameesme/SlimScroller.js/blob/master/dist/slimScroller.small.min.js)
-    282 bytes gzipped
-    464 bytes uncompressed
+    325 bytes gzipped
+    538 bytes uncompressed
 
 The small version includes support for one type of scroll-target:
 - CSS selector ( eg. `slimScroller.scroll("p:first-of-type")` )
