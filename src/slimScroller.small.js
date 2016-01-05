@@ -1,36 +1,44 @@
-var slimScroller = {
-    scroll: function (target, horizontal, time, callback) {
-        'use strict';
+var slimScroller = function (){
+    'use strict';
 
-        var easeInOutCubic = function (time) {
-            return (time < 0.5) ? 4 * time * time * time : (time - 1) * (2 * time - 2) * (2 * time - 2) + 1;
-        };
-        var position = function (start, end, elapsed, duration) {
-            return (elapsed > duration) ? end : start + (end - start) * easeInOutCubic(elapsed / duration);
-        };
+    var targetPosition,horizontal,clock,elapsed,duration,startPosition,total,callback;
+    var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame;
 
-        var duration = time || 300;
-        var start = (horizontal) ? window.pageXOffset : window.pageYOffset;
-        var total = (horizontal) ? document.body.offsetWidth - window.innerWidth : document.body.offsetHeight - window.innerHeight;
+    var scroll = function (target, horizontal, durationTime, callbackFunction) {
+        duration = durationTime || 500;
+        horizontal = horizontal || false;
+        callback = callbackFunction || false;
+        startPosition = (horizontal) ? window.pageXOffset : window.pageYOffset;
+        total = (horizontal) ? document.body.offsetWidth - window.innerWidth : document.body.offsetHeight - window.innerHeight;
+        targetPosition = (target > total) ? total : target;
 
-        var targetPosition = (horizontal) ? document.querySelector(target).offsetLeft : document.querySelector(target).offsetTop;
-
-        var clock = Date.now();
-        var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame;
-
-        var step = function () {
-            var elapsed = Date.now() - clock;
-            var finalPosition = position(start, targetPosition, elapsed, duration);
-            if(horizontal){window.scroll(finalPosition, 0);}else{window.scroll(0, finalPosition);}
-            
-            if (elapsed > duration) {
-                if (callback) {
-                    callback(window.scrollY);
-                }
-            } else {
-                requestAnimationFrame(step);
-            }
-        };
+        clock = Date.now();
         step();
-    }
-};
+    };
+    var easeInOutCubic = function (time) {
+        return (time < 0.5) ? 4 * time * time * time : (time - 1) * (2 * time - 2) * (2 * time - 2) + 1;
+    };
+    var calculatePosition = function () {
+        return (elapsed > duration) ? targetPosition : startPosition + (targetPosition - startPosition) * easeInOutCubic(elapsed / duration);
+    };
+    var step = function () {
+        elapsed = Date.now() - clock;
+        var stepPosition = calculatePosition();
+
+        if (horizontal){
+            window.scroll(stepPosition, 0);
+        }else{
+            window.scroll(0, stepPosition);
+        }
+        if (elapsed > duration) {
+            if (callback) {
+                callback([window.scrollX,window.scrollY]);
+            }
+        } else {
+            requestAnimationFrame(step);
+        }
+    };
+    return {
+        scroll: scroll
+    };
+}();
