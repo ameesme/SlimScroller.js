@@ -63,7 +63,11 @@
 
 		<script src='src/slimScroller.js'></script>
 		<script>
-			window.onload = slimScroller.bind;
+			window.addEventListener('load', function (){
+				return slimScroller.bind(false, function (position){
+					console.log('The current position is '+position);
+				});
+			});
 		</script>
 	</body>
 </html>
