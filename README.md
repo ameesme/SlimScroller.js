@@ -6,13 +6,13 @@ A slim smooth-scrolling script under 350 bytes (gzipped), with no other dependen
     325 bytes gzipped
     538 bytes uncompressed
 
-The small version includes support for one type of scroll-target:
+The base version includes support for one type of scroll-target:
 - CSS selector ( eg. `slimScroller.scroll("p:first-of-type")` )
 
 ### [SlimScroller Full](https://github.com/ameesme/SlimScroller.js/blob/master/dist/slimScroller.full.min.js)
     578  bytes gzipped
     1050 bytes uncompressed
-The base includes support for four types of scroll-targets:
+The full version includes support for four types of scroll-targets:
 - Position in pixels ( eg. `slimScroller.scroll(200)` )
 - CSS selector ( eg. `slimScroller.scroll("p:first-of-type")` )
 - Direct JavaScript HTML-element ( eg. `slimScroller.scroll(document.querySelector(p#hi))` )
