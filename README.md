@@ -10,8 +10,8 @@ The base version includes support for one type of scroll-target:
 - CSS selector ( eg. `slimScroller.scroll("p:first-of-type")` )
 
 ### [SlimScroller Full](https://github.com/ameesme/SlimScroller.js/blob/master/dist/slimScroller.full.min.js)
-    578  bytes gzipped
-    1050 bytes uncompressed
+    581  bytes gzipped
+    1060 bytes uncompressed
 The full version includes support for four types of scroll-targets:
 - Position in pixels ( eg. `slimScroller.scroll(200)` )
 - CSS selector ( eg. `slimScroller.scroll("p:first-of-type")` )
