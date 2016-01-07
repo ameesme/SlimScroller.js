@@ -64,7 +64,7 @@ var slimScroller = function (){
         var allAnchors = document.querySelectorAll('a');
         var i;
         for (i = 0; i < allAnchors.length; i++) {
-            if (allAnchors[i].href == window.location.href + '#' + allAnchors[i].href.split('#')[1]) {
+            if (allAnchors[i].href == window.location.href.split('#')[0] + '#' + allAnchors[i].href.split('#')[1]) {
                 allAnchors[i].addEventListener('click', function (event) {
                     event.preventDefault();
                     slimScroller.scroll('#'+event.target.href.split('#')[1], null, time, callbackFunction);
