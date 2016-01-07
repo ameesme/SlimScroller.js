@@ -69,6 +69,7 @@ var slimScroller = function (){
                     event.preventDefault();
                     slimScroller.scroll('#'+event.target.href.split('#')[1], null, time, callbackFunction);
                     window.location.href = event.target.href;
+                    return;
                 });
             }
         }
