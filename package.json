@@ -1,6 +1,6 @@
 {
   "name": "slimscroller",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Slim smooth-scrolling under 350 bytes (gzipped), with no other dependencies.",
   "main": "dist/slimScroller.full.min.js",
   "author": "Mees Boeijen <mees@amees.me> (https://amees.me)",
