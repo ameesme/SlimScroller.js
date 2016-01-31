@@ -1,7 +1,7 @@
 var slimScroller = function (){
     'use strict';
 
-    var targetPosition,horizontal,clock,elapsed,duration,startPosition,total,callback;
+    var targetPosition,horizontal,clock,elapsed,duration,startPosition,total,callback,elementPosition;
     var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame;
 
     var scroll = function (target, horizontal, durationTime, callbackFunction) {
