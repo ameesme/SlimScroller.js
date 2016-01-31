@@ -1,7 +1,7 @@
 var slimScroller = function (){
     'use strict';
 
-    var targetPosition,horizontal,clock,elapsed,duration,startPosition,total,callback;
+    var targetPosition,horizontal,clock,elapsed,duration,startPosition,total,callback,elementPosition;
     var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame;
 
     var scroll = function (target, horizontal, durationTime, callbackFunction) {
@@ -9,8 +9,9 @@ var slimScroller = function (){
         horizontal = horizontal || false;
         callback = callbackFunction || false;
         startPosition = (horizontal) ? window.pageXOffset : window.pageYOffset;
-        total = (horizontal) ? document.body.offsetWidth - window.innerWidth : document.body.offsetHeight - window.innerHeight;
-        targetPosition = (target > total) ? total : target;
+        total = (horizontal) ? window.innerWidth : window.innerHeight;
+        elementPosition =(horizontal) ? document.querySelector(target).offsetLeft : document.querySelector(target).offsetTop;
+        targetPosition = (elementPosition > total) ? total : elementPosition;
 
         clock = Date.now();
         step();
