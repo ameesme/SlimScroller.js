@@ -1,5 +1,5 @@
 # slimScroller.js
-A slim smooth-scrolling script under 350 bytes (gzipped), with no other dependencies (No jQuery).
+Smoothly scroll to positions on your website, under 350 bytes (gzipped) without dependencies (No jQuery).
 
 ## Two versions
 ### [SlimScroller Base](https://github.com/ameesme/SlimScroller.js/blob/master/dist/slimScroller.min.js)
