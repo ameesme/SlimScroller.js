@@ -9,7 +9,7 @@ var slimScroller = function (){
         horizontal = horizontal || false;
         callback = callbackFunction || false;
         startPosition = (horizontal) ? window.pageXOffset : window.pageYOffset;
-        total = (horizontal) ? window.innerWidth : window.innerHeight;
+        total = (horizontal) ? document.body.scrollWidth : document.body.scrollHeight;
         targetPosition = (parsePosition(target) > total) ? total : parsePosition(target);
 
         clock = Date.now();

@@ -3,15 +3,15 @@ Smoothly scroll to positions on your website, under 350 bytes, no dependencies.
 
 ## Two versions
 ### [SlimScroller Base](https://github.com/ameesme/SlimScroller.js/blob/master/dist/slimScroller.min.js)
-    339 bytes gzipped
-    564 bytes uncompressed
+    343 bytes gzipped
+    580 bytes uncompressed
 
 The base version includes support for one type of scroll-target:
 - CSS selector ( eg. `slimScroller.scroll("p:first-of-type")` )
 
 ### [SlimScroller Full](https://github.com/ameesme/SlimScroller.js/blob/master/dist/slimScroller.full.min.js)
-    565  bytes gzipped
-    1010 bytes uncompressed
+    570  bytes gzipped
+    1030 bytes uncompressed
 The full version includes support for three types of scroll-targets:
 - Position in pixels ( eg. `slimScroller.scroll(200)` )
 - CSS selector ( eg. `slimScroller.scroll("p:first-of-type")` )
