@@ -27,6 +27,16 @@ Just use the `slimScroller.scroll`-function with the following parameters.
 - `Optional` Horizontal-scrolling instead of vertical (`boolean`)
 - `Optional` Callback-function with final scroll-position as parameter
 
+### NPM
+Run `npm install slimscroller`.
+
+### Hosted
+#### Base
+```<script src="https://amees.me/files/public/SlimScroller.js/dist/slimScroller.min.js"></script>```
+
+#### Full
+```<script src="https://amees.me/files/public/SlimScroller.js/dist/slimScroller.full.min.js"></script>```
+
 ## Demo
 [View here](https://amees.me/files/public/SlimScroller.js/demo.html).
 
