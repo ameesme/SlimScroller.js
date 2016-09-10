@@ -1,4 +1,6 @@
 # slimScroller.js
+![](http://forthebadge.com/images/badges/built-with-love.svg)
+
 Smoothly scroll to positions on your website, under 350 bytes, no dependencies.
 
 ## Two versions
