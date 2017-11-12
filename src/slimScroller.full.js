@@ -1,24 +1,25 @@
 var slimScroller = function (){
     'use strict';
 
-    var targetPosition,horizontal,clock,elapsed,duration,startPosition,total,callback;
+    var elapsed, horizontal;
     var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame;
 
-    var scroll = function (target, horizontal, durationTime, callbackFunction) {
-        duration = durationTime || 500;
-        horizontal = horizontal || false;
-        callback = callbackFunction || false;
-        startPosition = (horizontal) ? window.pageXOffset : window.pageYOffset;
-        total = (horizontal) ? document.body.scrollWidth : document.body.scrollHeight;
-        targetPosition = (parsePosition(target) > total) ? total : parsePosition(target);
+    var scroll = function (target, horizontal, durationTime, callbackFunction, scrollTarget) {
+        var scrollTargetReference = (scrollTarget && scrollTarget instanceof Element) || window;
+        var duration = durationTime || 500;
+        var horizontal = horizontal || false;
+        var callback = callbackFunction || false;
+        var startPosition = (horizontal) ? window.pageXOffset : window.pageYOffset;
+        var total = (horizontal) ? pageXOffset.scrollWidth : pageXOffset.scrollHeight;
+        var targetPosition = (parsePosition(target) > total) ? total : parsePosition(target);
 
-        clock = Date.now();
-        step();
+        var clock = Date.now();
+        step(duration, horizontal, callback, startPosition, total, targetPosition, scrollTarget, clock)();
     };
     var easeInOutCubic = function (time) {
         return (time < 0.5) ? 4 * time * time * time : (time - 1) * (2 * time - 2) * (2 * time - 2) + 1;
     };
-    var calculatePosition = function () {
+    var calculatePosition = function (elapsed, duration, targetPosition, startPosition) {
         return (elapsed > duration) ? targetPosition : startPosition + (targetPosition - startPosition) * easeInOutCubic(elapsed / duration);
     };
     var parsePosition = function (target){
@@ -43,21 +44,24 @@ var slimScroller = function (){
             throw new Error('Unknown type as target');
         }
     };
-    var step = function () {
-        elapsed = Date.now() - clock;
-        var stepPosition = calculatePosition();
-
-        if (horizontal){
-            window.scroll(stepPosition, 0);
-        }else{
-            window.scroll(0, stepPosition);
-        }
-        if (elapsed > duration) {
-            if (callback) {
-                callback([window.scrollX,window.scrollY]);
+    var step = function (duration, horizontal, callback, startPosition, total, targetPosition, scrollTarget, clock) {
+        return function() {
+            elapsed = Date.now() - clock;
+            var stepPosition = calculatePosition(elapsed, duration, targetPosition, startPosition);
+            var scrollTargetReference = (scrollTarget && scrollTarget instanceof Element) || window;
+    
+            if (horizontal){
+                scrollTargetReference.scroll(stepPosition, 0);
+            }else{
+                scrollTargetReference.scroll(0, stepPosition);
             }
-        } else {
-            requestAnimationFrame(step);
+            if (elapsed > duration) {
+                if (callback) {
+                    callback([window.scrollX,window.scrollY]);
+                }
+            } else {
+                requestAnimationFrame(step(duration, horizontal, callback, startPosition, total, targetPosition, scrollTarget, clock));
+            }
         }
     };
     var bind = function (time, callbackFunction) {
